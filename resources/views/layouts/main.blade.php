@@ -19,6 +19,13 @@
     <link href="/css/styles.css" rel="stylesheet" />
 </head>
 
+{{-- start here --}}
+<?php
+$menus = [['name' => 'Home', 'path' => 'home', 'dropdown' => null], ['name' => 'Blogs', 'path' => 'blogs', 'dropdown' => null], ['name' => 'About us', 'path' => 'about', 'dropdown' => ['Link 1', 'Link2', 'Link3', 'Link4']]];
+$menus = null;
+?>
+{{-- end here --}}
+
 <body>
     <!-- Navigation-->
     <nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
@@ -31,13 +38,37 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ms-auto py-4 py-lg-0 align-items-center">
-                    <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4"
-                            href="{{ route('home') }}">Home</a></li>
-                    <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4"
-                            href="{{ route('blogs') }}">News</a></li>
-                    <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4"
-                            href="{{ route('about') }}">About us</a>
-                    </li>
+                    @if (!$menus) {{-- this line --}}
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4"
+                                href="{{ route('home') }}">Home</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4"
+                                href="{{ route('blogs') }}">Blogs</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4"
+                                href="{{ route('about') }}">About us</a>
+                        </li>
+                        {{-- start here --}}
+                    @else
+                        @foreach ($menus as $menu)
+                            @if (!$menu['dropdown'])
+                                <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4"
+                                        href="{{ route($menu['path']) }}">{{ $menu['name'] }}</a></li>
+                            @else
+                                <div class="dropdown">
+                                    <a class="btn btn-secondary dropdown-toggle" href="#" role="button"
+                                        id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                                        {{ $menu['name'] }}
+                                    </a>
+
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                        @foreach ($menu['dropdown'] as $menu)
+                                            <li><a class="dropdown-item" href="#">{{ $menu }}</a></li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
+                        @endforeach
+                    @endif
+                    {{-- until here --}}
                     @auth
                         <li class="nav-item">
                             <form action="{{ route('logout') }}">
