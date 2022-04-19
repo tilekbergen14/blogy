@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Blog extends Model
 {
-    use HasFactory;
     protected $fillable = [
         'title',
         'image',
@@ -15,4 +14,9 @@ class Blog extends Model
         "user_id",
         "subtitle"
     ];
+
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
+    use HasFactory;
 }

@@ -8,18 +8,18 @@
                     Add blog
                 </button></a>
         </div>
-        <div class="post-preview">
-            <a href="post.html">
-                <h6 class="post-title" style="font-size: 24px">Failure is not an option</h6>
-                <h4 class="post-subtitle" style="font-size: 20px">Many say exploration is part of our destiny, but it’s
-                    actually our duty
-                    to future generations.</h4>
-            </a>
-            <p class="post-meta" style="font-size: 16px">
-                Posted by
-                <a href="#!">Start Bootstrap</a>
-                on July 8, 2022
-            </p>
-        </div>
+        @foreach ($blogs as $blog)
+            <div class="post-preview border-bottom">
+                <a href="{{ route('edit-blog', $blog) }}" style="text-decoration: none">
+                    <h6 class="post-title" style="font-size: 24px">{{ $blog->title }}</h6>
+                    <h4 class="post-subtitle" style="font-size: 20px">{{ $blog->subtitle }}</h4>
+                </a>
+                <p class="post-meta" style="font-size: 16px">
+                    by
+                    <a href="#!">{{ $blog->user->name }}</a>
+                    at {{ $blog->created_at->format('d.m.Y') }}
+                </p>
+            </div>
+        @endforeach
     </main>
 @endsection

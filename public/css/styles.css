@@ -231,6 +231,7 @@ sup {
 a {
   color: #212529;
   text-decoration: none;
+  outline: none;
 }
 a:hover {
   color: #0085A1;
@@ -11220,14 +11221,14 @@ header.masthead .site-heading .h1 {
 }
 .post-preview > a > .post-title {
   font-size: 1.875rem;
-  margin-top: 1.875rem;
-  margin-bottom: 0.625rem;
+  padding-top: 1.875rem;
+  padding-bottom: 0.625rem;
+  margin-bottom: 0;
 }
 .post-preview > a > .post-subtitle {
   font-weight: 300;
   font-size: 16px;
   margin-bottom: 0.625rem;
-  color: red
 }
 .post-preview > .post-meta {
   font-size: 1.125rem;
@@ -11238,8 +11239,39 @@ header.masthead .site-heading .h1 {
 .post-preview > .post-meta > a {
   text-decoration: none;
 }
+
 @media (min-width: 992px) {
   .post-preview > a > .post-title {
     font-size: 2.25rem;
   }
+}
+.uploaded-img{
+  max-width: 100%;
+}
+
+.blog-grid{
+  display: grid; 
+  grid-template-columns: repeat(3, 1fr); 
+  grid-gap: 8px;
+}
+@media (max-width: 992px) {
+  .blog-grid{
+    grid-template-columns: repeat(2, 1fr); 
+  }
+}
+@media (max-width: 600px) {
+  .blog-grid{
+    grid-template-columns: repeat(1, 1fr); 
+  }
+}
+.card-img-top{
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  background-color: #f2f2f2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-top-left-radius: 0.25rem !important;
+  border-top-right-radius: 0.25rem !important;
 }

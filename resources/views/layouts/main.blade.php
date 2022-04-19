@@ -30,16 +30,21 @@
                 <i class="fas fa-bars"></i>
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav ms-auto py-4 py-lg-0">
+                <ul class="navbar-nav ms-auto py-4 py-lg-0 align-items-center">
                     <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4"
                             href="{{ route('home') }}">Home</a></li>
-                    <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="about.html">News</a></li>
-                    <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="post.html">About us</a>
+                    <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4"
+                            href="{{ route('blogs') }}">News</a></li>
+                    <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4"
+                            href="{{ route('about') }}">About us</a>
                     </li>
                     @auth
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{{ route('login') }}">
-                                Dashboard
-                            </a>
+                        <li class="nav-item">
+                            <form action="{{ route('logout') }}">
+                                <button class="btn btn-primary  text-light" href="{{ route('login') }}">
+                                    Logout
+                                </button>
+                            </form>
                         </li>
                     @endauth
                     @guest
